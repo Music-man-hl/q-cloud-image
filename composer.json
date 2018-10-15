@@ -1,0 +1,25 @@
+{
+    "name": "music-man-hl/q-cloud-image",
+    "description": "腾讯云图片识别PHP-SDK",
+    "keywords": ["laravel", "Music-man-hl", "q-cloud-image", "image","腾讯云","图片识别"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "music-man diaodiao",
+            "email": "yodiaodiao@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "composer/composer": "^1.6"
+    },
+    "require-dev": {
+        "phpro/grumphp": "^0.14",
+        "phpunit/phpunit" : "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "MusicManHl\\QCloudImage\\": "src"
+        }
+    }
+}
