@@ -133,7 +133,8 @@ class CIClient {
 	 *                  url    array: 指定图片的url数组
 	 *                  file   array: 指定图片的路径数组
 	 *                  buffer string: 指定图片的内容
-	 *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次 file，再次 buffer。
+	 *								  base64 string: 指定图片的内容
+	 *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次base64,其次 file，再次 buffer。
 	 *
 	 * @return array    http请求响应
 	 */
@@ -165,7 +166,9 @@ class CIClient {
             $files['image'] = base64_encode(file_get_contents($filePath));
 	    } else if (isset($picture['buffer'])) {
 	       $files['image'] = base64_encode($picture['buffer']);
-	    } else {
+			}else if (isset($picture['base64'])) {
+			 	$files['image'] = $picture['base64'];
+			} else {
 	        return Error::json(Error::$Param, 'param picture is illegal');
 	    }
 
