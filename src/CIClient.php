@@ -72,7 +72,7 @@ class CIClient {
      *                  files   array: 指定图片的路径数组
 	 *                  以上两种指定其一即可，如果指定多个，则优先使用urls，其次 files
 	 *
-	 * @return array    http请求响应
+	 * @return array|string
 	 */
 	public function pornDetect($picture) {
 
@@ -136,7 +136,7 @@ class CIClient {
 	 *								  base64 string: 指定图片的内容
 	 *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次base64,其次 file，再次 buffer。
 	 *
-	 * @return array    http请求响应
+	 * @return string
 	 */
 	public function tagDetect($picture) {
 
@@ -191,7 +191,7 @@ class CIClient {
 	 *                  buffers array: 指定图片的内容
 	 *                  以上三种指定其一即可，如果指定多个，则优先使用urls，其次 files，最后buffers
 	 * @param $cardType int 0为身份证有照片的一面，1为身份证有国徽的一面
-	 * @return array    http请求响应
+	 * @return array|string
 	 */
 	public function idcardDetect($picture, $cardType=0) {
 
@@ -267,7 +267,7 @@ class CIClient {
 	 *                  files   array: 指定图片的路径数组
 	 *                  buffers array: 指定图片的内容
 	 *                  以上三种指定其一即可，如果指定多个，则优先使用urls，其次 files，最后buffers
-	 * @return array    http请求响应
+	 * @return array|string
 	 */
 	public function namecardV2Detect($picture) {
 
@@ -338,7 +338,7 @@ class CIClient {
      *                  buffers array: 指定图片的内容
      *                  以上三种指定其一即可，如果指定多个，则优先使用urls，其次 files，最后buffers
      * @param type int 表示识别类型，0表示行驶证，1表示驾驶证
-     * @return array    http请求响应
+     * @return array|string
      */
     public function drivingLicence($picture, $type=0){
 
@@ -402,7 +402,7 @@ class CIClient {
      *                  files   array: 指定图片的路径数组
      *                  buffers array: 指定图片的内容
      *                  以上三种指定其一即可，如果指定多个，则优先使用urls，其次 files，最后buffers
-     * @return array    http请求响应
+     * @return array|string
      */
     public function plate($picture){
 
@@ -460,7 +460,7 @@ class CIClient {
      *                  files   array: 指定图片的路径数组
      *                  buffers array: 指定图片的内容
      *                  以上三种指定其一即可，如果指定多个，则优先使用urls，其次 files，最后buffers
-     * @return array    http请求响应
+     * @return array|string
      */
     public function bankcard ($picture){
 
@@ -516,7 +516,7 @@ class CIClient {
      *                 * @param  array(associative) $pictures   车牌号的图片
      *                  urls    array: 指定图片的url数组
      *                  以上三种指定其一即可，如果指定多个，则优先使用urls，其次 files
-     * @return array    http请求响应
+     * @return array|string
      */
     public function bizlicense ($picture){
 
@@ -573,7 +573,7 @@ class CIClient {
      *                  urls    array: 指定图片的url数组
      *                  files   array: 指定图片的路径数组
      *                  以上三种指定其一即可，如果指定多个，则优先使用urls，其次 files
-     * @return array    http请求响应
+     * @return array|string
      */
     public function general ($picture){
 
@@ -630,7 +630,7 @@ class CIClient {
      *                  urls    array: 指定图片的url数组
      *                  files   array: 指定图片的路径数组
      *                  以上三种指定其一即可，如果指定多个，则优先使用urls，其次 files
-     * @return array    http请求响应
+     * @return array|string
      */
     public function handwriting ($picture){
 
@@ -692,7 +692,7 @@ class CIClient {
      * @param  string $personName  创建的Person的名字
      * @param  string $tag       为创建的Person打标签
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceNewPerson($personId, $groupIds, $picture, $personName=NULL, $tag=NULL) {
 
@@ -762,7 +762,7 @@ class CIClient {
      * 删除Person
      * @param  string $personId  删除的Person的ID
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceDelPerson($personId) {
         $reqUrl = $this->conf->buildUrl('/face/delperson');
@@ -790,7 +790,7 @@ class CIClient {
      *                  以上三种指定其一即可，如果指定多个，则优先使用urls，其次 files，再次 buffers。
      * @param  string $tag       为face打标签
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceAddFace($personId, $pictures, $tag=NULL) {
         if (! is_array($pictures)) {
@@ -855,7 +855,7 @@ class CIClient {
      * @param  string $personId  操作的Person的ID
      * @param  array  $faceIds   删除的face的ID数组
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceDelFace($personId, $faceIds) {
 
@@ -884,7 +884,7 @@ class CIClient {
      * @param  string $personName  Person的名字
      * @param  string $tag         为Person打标签
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceSetInfo($personId, $personName=NULL, $tag=NULL) {
         $reqUrl = $this->conf->buildUrl('/face/setinfo');
@@ -912,7 +912,7 @@ class CIClient {
      * 获取信息
      * @param  string $personId    操作的Person的ID
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceGetInfo($personId) {
         $reqUrl = $this->conf->buildUrl('/face/getinfo');
@@ -933,7 +933,7 @@ class CIClient {
     /**
      * 获取app下的组列表
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceGetGroupIds() {
         $reqUrl = $this->conf->buildUrl('/face/getgroupids');
@@ -954,7 +954,7 @@ class CIClient {
      * 获取group下的person列表
      * @param  string $groupId    操作的GroupID
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceGetPersonIds($groupId) {
         $reqUrl = $this->conf->buildUrl('/face/getpersonids');
@@ -976,7 +976,7 @@ class CIClient {
      * 获取person的face列表
      * @param  string $personId    操作的Person的ID
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceGetFaceIds($personId) {
         $reqUrl = $this->conf->buildUrl('/face/getfaceids');
@@ -998,7 +998,7 @@ class CIClient {
      * 获取face的信息
      * @param  string $faceId    操作的FaceID
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceGetFaceInfo($faceId) {
         $reqUrl = $this->conf->buildUrl('/face/getfaceinfo');
@@ -1025,7 +1025,7 @@ class CIClient {
      *                  buffer string: 指定图片的内容
      *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次 file，再次 buffer。
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceIdentify($groupId, $picture) {
         if (! is_array($picture)) {
@@ -1084,7 +1084,7 @@ class CIClient {
      *                  buffer string: 指定图片的内容
      *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次 file，再次 buffer。
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceVerify($personId, $picture) {
         if (! is_array($picture)) {
@@ -1147,7 +1147,7 @@ class CIClient {
      *                  buffer string: 指定图片的内容
      *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次 file，再次 buffer。
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceCompare($pictureA, $pictureB) {
         if (! is_array($pictureA)) {
@@ -1237,7 +1237,7 @@ class CIClient {
      *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次 file，再次 buffer。
      * @param  int  $mode  检测模式，0为检测所有人脸，1为检测最大的人脸
      *
-     * @return array    http请求响应
+     * @return array|string
      */
 	public function faceDetect($picture, $mode=0) {
         if (! is_array($picture)) {
@@ -1301,7 +1301,7 @@ class CIClient {
      *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次 file，再次 buffer。
      * @param  int  $mode  检测模式，0为检测所有人脸，1为检测最大的人脸
      *
-     * @return array    http请求响应
+     * @return string    http请求响应
      */
 	public function faceShape($picture, $mode=0) {
 
@@ -1364,7 +1364,7 @@ class CIClient {
      *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次 file
      * @param  array  $idtype  group_id:单个id，group_ids：多个id
      *
-     * @return array    http请求响应
+     * @return string    http请求响应
      */
     public function multidentify($picture, $idtype){
 
@@ -1452,7 +1452,7 @@ class CIClient {
      *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次 file，再次 buffer。
      * @param  int  $mode  检测模式，0为检测所有人脸，1为检测最大的人脸
      *
-     * @return array    http请求响应
+     * @return string    http请求响应
      */
     public function liveDetectPicture ($picture, $sign) {
 
@@ -1508,7 +1508,7 @@ class CIClient {
      *                  buffer string: 指定图片的内容
      *                  以上三种指定其一即可，如果指定多个，则优先使用url，其次 file，再次 buffer。
      *
-     * @return array    http请求响应
+     * @return string    http请求响应
      */
 	public function faceIdCardCompare($idcardNumber, $idcardName, $picture) {
 
@@ -1565,7 +1565,7 @@ class CIClient {
      * 活体检测第一步：获取唇语（验证码）
      * @param  string $seq    指定一个sessionId，若使用，请确保id唯一。
      *
-     * @return array    http请求响应
+     * @return string    http请求响应
      */
 	public function faceLiveGetFour($seq=NULL) {
         $reqUrl = $this->conf->buildUrl('/face/livegetfour');
@@ -1599,7 +1599,7 @@ class CIClient {
      *                  以上二种指定其一即可，如果指定多个，则优先使用 file，其次 buffer。
      * @param  string $seq    指定一个sessionId，若使用，请确保id唯一。
      *
-     * @return array    http请求响应
+     * @return string    http请求响应
      */
 	public function faceLiveDetectFour($validate, $video, $compareFlag, $card=NULL, $seq=NULL) {
         if (! is_array($video)) {
@@ -1688,7 +1688,7 @@ class CIClient {
      * @param  string  $idcardName     姓名
      * @param  string  $seq    指定一个sessionId，若使用，请确保id唯一。
      *
-     * @return array    http请求响应
+     * @return string    http请求响应
      */
 	public function faceIdCardLiveDetectFour($validate, $video, $idcardNumber, $idcardName, $seq=NULL) {
         if (! is_array($video)) {
